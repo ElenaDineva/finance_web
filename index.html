@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transaction history
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in company_shares %}
+            <tr>
+                <td>{{ row.symbol }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.shares }}</td>
+                <td>{{ row.price | usd }}</td>
+                <td>{{ row.total | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+            <tfoot>
+                <tr>
+                    <td>CASH</td>
+                    <td colspan="3"></td>
+                    <td>{{ cash }}</td>
+                </tr>
+                <tr>
+                    <td>Account Balance</td>
+                    <td colspan="3"></td>
+                    <td>{{ net }}</td>
+                </tr>
+            </tfoot>
+    </table>
+{% endblock %}
