@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    {% if api %}
+
+        <p>A share of {{api["name"]}} ({{api["symbol"]}}) costs {{api["price"] | usd }} </p>
+
+    {% else %}
+        <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+    {% endif %}
+
+{% endblock %}
